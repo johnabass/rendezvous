@@ -69,6 +69,20 @@ func (h *Hash) Get(key []byte) interface{} {
 		return nil
 	}
 
+	return h.get(key)
+}
+
+// GetString returns the result of a rendezvous hash using a string key
+func (h *Hash) GetString(key string) interface{} {
+	if len(h.entries) == 0 {
+		// be kind to the gc: avoid an extra byte slice if we're empty anyway
+		return nil
+	}
+
+	return h.get([]byte(key))
+}
+
+func (h *Hash) get(key []byte) interface{} {
 	var (
 		champion interface{}
 		value    uint64
@@ -82,11 +96,6 @@ func (h *Hash) Get(key []byte) interface{} {
 	}
 
 	return champion
-}
-
-// GetString returns the result of a rendezvous hash using a string key
-func (h *Hash) GetString(key string) interface{} {
-	return h.Get([]byte(key))
 }
 
 var emptyHash = Hash{hasher: DefaultHasher}
