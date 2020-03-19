@@ -106,7 +106,7 @@ func EmptyHash() *Hash {
 	return &emptyHash
 }
 
-// Builder is an immutable fluent builder for Hash instances.  Builders are not safe
+// Builder is a mutable, fluent builder for Hash instances.  Builders are not safe
 // for concurrent reads and writes.  The zero value for this struct is a valid instance.
 type Builder struct {
 	entries []Entry
