@@ -19,7 +19,7 @@ func NewHasher32(hf func() hash.Hash32) Hasher {
 	}
 }
 
-// NewHasher64 uses a cw6432-bit hash constructor, such as fnv.New64a, as the basis
+// NewHasher64 uses a 64-bit hash constructor, such as fnv.New64a, as the basis
 // for the returned Hasher implementation
 func NewHasher64(hf func() hash.Hash64) Hasher {
 	return func(key, member []byte) uint64 {
